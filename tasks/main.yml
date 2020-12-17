@@ -27,7 +27,7 @@
 - name: Fix oh-my-zsh permissions issue
   file:
     path: "{{ item }}"
-    mode: '0644'
+    mode: '0755'
     recurse: yes
   with_items: "{{ ohmyzsh_folders }}"
   become: true
