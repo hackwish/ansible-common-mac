@@ -30,6 +30,7 @@
     mode: '0644'
     recurse: yes
   with_items: "{{ ohmyzsh_folders }}"
+  become: true
 
 - name: "Install Homebrew Packages"
   community.general.homebrew:
