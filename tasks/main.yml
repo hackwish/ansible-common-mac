@@ -5,15 +5,15 @@
     name: wheel
     state: present
   become: true
-  
+
 - name: Allow 'wheel' group to have passwordless sudo
   lineinfile:
     dest: /etc/sudoers
     state: present
     regexp: '^%wheel'
     line: '%wheel ALL=(ALL) NOPASSWD: ALL'
-    become: true
     validate: visudo -cf %s
+  become: true
 
 - name: Add sudoers users to wheel group
   user:
