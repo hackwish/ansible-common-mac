@@ -1,2 +1,9 @@
 ---
 # defaults file for ansible-common-mac
+
+sudoers:
+  - admin
+  - administrator
+ohmyzsh_folders:
+  - "/usr/local/share/zsh"
+  - "/usr/local/share/zsh/site-functions"
