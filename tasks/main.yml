@@ -1,36 +1,36 @@
 ---
 # tasks file for ansible-common-mac
-- name: Make sure we have a 'wheel' group
-  group:
-    name: wheel
-    state: present
-  become: true
+# - name: Make sure we have a 'wheel' group
+#   group:
+#     name: wheel
+#     state: present
+#   become: true
 
-- name: Allow 'wheel' group to have passwordless sudo
-  lineinfile:
-    dest: /etc/sudoers
-    state: present
-    regexp: '^%wheel'
-    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
-    validate: visudo -cf %s
-  become: true
+# - name: Allow 'wheel' group to have passwordless sudo
+#   lineinfile:
+#     dest: /etc/sudoers
+#     state: present
+#     regexp: '^%wheel'
+#     line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+#     validate: visudo -cf %s
+#   become: true
 
-- name: Add sudoers users to wheel group
-  user:
-    name: "{{ item }}"
-    groups: wheel
-    append: yes
-  with_items: "{{ sudoers }}"
-  become: true
-  ignore_errors: true
+# - name: Add sudoers users to wheel group
+#   user:
+#     name: "{{ item }}"
+#     groups: wheel
+#     append: yes
+#   with_items: "{{ sudoers }}"
+#   become: true
+#   ignore_errors: true
 
-- name: Fix oh-my-zsh permissions issue
-  file:
-    path: "{{ item }}"
-    mode: '0755'
-    recurse: yes
-  with_items: "{{ ohmyzsh_folders }}"
-  become: true
+# - name: Fix oh-my-zsh permissions issue
+#   file:
+#     path: "{{ item }}"
+#     mode: '0755'
+#     recurse: yes
+#   with_items: "{{ ohmyzsh_folders }}"
+#   become: true
 
 - name: "Install Homebrew Packages"
   community.general.homebrew:
@@ -49,18 +49,18 @@
       # - 'syncthing'
       - 'autoconf'
       - 'bash-completion'
-      - 'boot2docker'
+      # - 'boot2docker'
       # - 'ccze'
       - 'coreutils'
-      - 'cowsay'
-      - 'curl'
-      - 'docker-compose'
-      - 'docker-machine'
+      # - 'cowsay'
+      # - 'curl'
+      # - 'docker-compose'
+      # - 'docker-machine'
       - 'doxygen'
       - 'gcc'
       - 'gettext'
       - 'gifsicle'
-      - 'git'
+      ## - 'git'
       - 'git-flow'
       - 'git-ftp'
       - 'git-lfs'
@@ -74,20 +74,20 @@
       - 'imagemagick'
       - 'iperf'
       - 'jq'
-      - 'kubectl'
-      - 'kubernetes-helm'
+      # - 'kubectl'
+      # - 'kubernetes-helm'
       - 'libevent'
       - 'libmagic'
       - 'libyaml'
       - 'mcrypt'
       - 'nano'
       - 'ncdu'
-      - 'nmap'
-      - 'node'
-      - 'nvm'
+      #- 'nmap'
+      ### - 'node'
+      # - 'nvm'
       - 'openssl'
-      - 'packer'
-      - 'php'
+      # - 'packer'
+      # - 'php'
       - 'pv'
       - 'pyenv'
       - 'python'
@@ -99,13 +99,13 @@
       - 'sambadevi/powerlevel9k/powerlevel9k'
       - 'sqlite'
       - 'ssh-copy-id'
-      - 'terraform'
-      - 'terraform-inventory'
+      # - 'terraform'
+      # - 'terraform-inventory'
       - 'the_silver_searcher'
       - 'tmux'
       - 'tree'
-      - 'universal-ctags'
-      - 'vault'
+      ## - 'universal-ctags'
+      # - 'vault'
       - 'vim'
       - 'watch'
       - 'watchman'
@@ -113,86 +113,86 @@
       - 'wrk'
       - 'xz'
       - 'yarn'
-      - 'zsh'
+      # - 'zsh'
       - 'zsh-syntax-highlighting'
     state: present
     update_homebrew: yes
     upgrade_all: yes
     
-- name: "Install Homebrew TAP Packages"
-  community.general.homebrew_tap:
-    name: "{{ packages }}"
-  vars:
-    packages:
-      - 'homebrew/cask'
-      - 'homebrew/cask-versions'
-      - 'homebrew/core'
-      - 'adoptopenjdk/openjdk'
-      # - 'caskroom/cask'
-    state: present
+# - name: "Install Homebrew TAP Packages"
+#   community.general.homebrew_tap:
+#     name: "{{ packages }}"
+#   vars:
+#     packages:
+#       - 'homebrew/cask'
+#       - 'homebrew/cask-versions'
+#       - 'homebrew/core'
+#       - 'adoptopenjdk/openjdk'
+#       # - 'caskroom/cask'
+#     state: present
 
-- name: "Install Homebrew Cask Packages"
-  community.general.homebrew_cask:
-    name: "{{ packages }}"
-  vars:
-    packages:
-      # - 'atom'
-      # - 'azure-data-studio'
-      # - 'discord'
-      # - 'dropbox'
-      # - 'forticlient'
-      # - 'gimp'
-      # - 'google-drive'
-      # - 'google-hangouts'
-      # - 'ibm-cloud-cli'
-      # - 'intellij-idea-ce'
-      # - 'keepassxc'
-      # - 'lastpass'
-      # - 'libreoffice'
-      # - 'microsoft-teams'
-      # - 'mysqlworkbench'
-      # - 'nmap'
-      # - 'pgadmin4'
-      # - 'robo-3t'
-      # - 'signal'
-      # - 'skype'
-      # - 'slack'
-      # - 'sling'
-      # - 'soapui'
-      # - 'spotify'
-      # - 'sublime-text'
-      # - 'teamviewer'
-      # - 'telegram'
-      # - 'tor-browser'
-      # - 'virtualbox'
-      # - 'virtualbox-extension-pack'
-      # - 'visual-studio-code'
-      # - 'vlc'
-      # - 'zoom'
-      - 'android-platform-tools'
-      - 'android-studio'
-      - 'chromedriver'
-      - 'docker'
-      - 'firefox'
-      - 'font-hack-nerd-font'
-      - 'google-chrome'
-      - 'google-cloud-sdk'
-      - 'gpg-suite'
-      - 'insomnia'
-      - 'iterm2'
-      # - 'java'
-      - 'macvim'
-      - 'meld'
-      - 'adoptopenjdk'
-      - 'postman'
-      - 'royal-tsx'
-      - 'vagrant'
-      - 'vagrant-manager'
-      - 'wine-stable'
-      - 'xquartz'
-    state: present
-    upgrade_all: yes
-    update_homebrew: yes
-    # install_options: force
+# - name: "Install Homebrew Cask Packages"
+#   community.general.homebrew_cask:
+#     name: "{{ packages }}"
+#   vars:
+#     packages:
+#       # - 'atom'
+#       # - 'azure-data-studio'
+#       # - 'discord'
+#       # - 'dropbox'
+#       # - 'forticlient'
+#       # - 'gimp'
+#       # - 'google-drive'
+#       # - 'google-hangouts'
+#       # - 'ibm-cloud-cli'
+#       # - 'intellij-idea-ce'
+#       # - 'keepassxc'
+#       # - 'lastpass'
+#       # - 'libreoffice'
+#       # - 'microsoft-teams'
+#       # - 'mysqlworkbench'
+#       # - 'nmap'
+#       # - 'pgadmin4'
+#       # - 'robo-3t'
+#       # - 'signal'
+#       # - 'skype'
+#       # - 'slack'
+#       # - 'sling'
+#       # - 'soapui'
+#       # - 'spotify'
+#       # - 'sublime-text'
+#       # - 'teamviewer'
+#       # - 'telegram'
+#       # - 'tor-browser'
+#       # - 'virtualbox'
+#       # - 'virtualbox-extension-pack'
+#       # - 'visual-studio-code'
+#       # - 'vlc'
+#       # - 'zoom'
+#       - 'android-platform-tools'
+#       - 'android-studio'
+#       - 'chromedriver'
+#       - 'docker'
+#       - 'firefox'
+#       - 'font-hack-nerd-font'
+#       - 'google-chrome'
+#       - 'google-cloud-sdk'
+#       - 'gpg-suite'
+#       - 'insomnia'
+#       - 'iterm2'
+#       # - 'java'
+#       - 'macvim'
+#       - 'meld'
+#       - 'adoptopenjdk'
+#       - 'postman'
+#       - 'royal-tsx'
+#       - 'vagrant'
+#       - 'vagrant-manager'
+#       - 'wine-stable'
+#       - 'xquartz'
+#     state: present
+#     upgrade_all: yes
+#     update_homebrew: yes
+#     # install_options: force
 
-# Aditional Tasks
+# # Aditional Tasks
