@@ -40,8 +40,8 @@
       - 'homebrew/cask-versions'
       - 'homebrew/core'
       - 'adoptopenjdk/openjdk'
-      - 'caskroom/cask'
       - 'hashicorp/tap'
+    ignore_errors: true
 
 - name: "Install Homebrew Packages"
   community.general.homebrew:
