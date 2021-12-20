@@ -43,7 +43,7 @@
       - 'hashicorp/tap'
       - 'universal-ctags/universal-ctags'
       - 'heroku/brew'
-    ignore_errors: true
+  ignore_errors: true
 
 - name: "Install Homebrew Packages"
   community.general.homebrew:
@@ -103,4 +103,4 @@
     state: present
     update_homebrew: yes
     upgrade_all: yes
-    ignore_errors: true
+  ignore_errors: true
