@@ -41,6 +41,8 @@
       - 'homebrew/core'
       - 'adoptopenjdk/openjdk'
       - 'hashicorp/tap'
+      - 'universal-ctags/universal-ctags'
+      - 'heroku/brew'
     ignore_errors: true
 
 - name: "Install Homebrew Packages"
@@ -48,7 +50,6 @@
     name: "{{ packages }}"
   vars:
     packages:
-      - 'anydesk'
       - 'autoconf'
       - 'bash-completion'
       - 'certbot'
