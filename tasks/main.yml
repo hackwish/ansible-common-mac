@@ -105,4 +105,4 @@
     upgrade_all: yes
   register: brew_common_result
   ignore_errors: true
-  failed_when: "'Error:' in brew_common_result.stderr"
+  failed_when: "'Error:' in brew_common_result.stdout"
