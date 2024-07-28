@@ -40,7 +40,6 @@
       # - 'homebrew/cask-versions'
       - 'homebrew/core'
       - 'universal-ctags/universal-ctags'
-      - 
   ignore_errors: true
 
 - name: "Install Homebrew Packages"
