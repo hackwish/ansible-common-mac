@@ -36,10 +36,11 @@
     name: "{{ packages }}"
   vars:
     packages:
-      - 'homebrew/cask'
-      - 'homebrew/cask-versions'
+      # - 'homebrew/cask'
+      # - 'homebrew/cask-versions'
       - 'homebrew/core'
       - 'universal-ctags/universal-ctags'
+      - 
   ignore_errors: true
 
 - name: "Install Homebrew Packages"
@@ -61,12 +62,12 @@
       - 'htop'
       - 'httpie'
       - 'hub'
-      - 'hudochenkov/sshpass/sshpass'
       - 'iperf'
       - 'jq'
       - 'libevent'
       - 'libmagic'
       - 'libyaml'
+      - 'macvim'
       - 'openssl'
       - 'pv'
       - 'pyenv'
@@ -78,6 +79,7 @@
       - 'ruby-build'
       - 'sambadevi/powerlevel9k/powerlevel9k'
       - 'ssh-copy-id'
+      - 'sshpass'
       - 'the_silver_searcher'
       - 'tree'
       - 'universal-ctags'
@@ -90,7 +92,6 @@
       - 'yarn'
       - 'zsh'
       - 'zsh-syntax-highlighting'
-      - 'macvim'
     state: present
     update_homebrew: yes
     upgrade_all: yes
