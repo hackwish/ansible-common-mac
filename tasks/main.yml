@@ -38,7 +38,7 @@
     packages:
       # - 'homebrew/cask'
       # - 'homebrew/cask-versions'
-      - 'homebrew/core'
+      # - 'homebrew/core'
       - 'universal-ctags/universal-ctags'
   ignore_errors: true
 
