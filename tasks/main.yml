@@ -47,6 +47,8 @@
   community.general.homebrew:
     update_homebrew: yes
     upgrade_all: yes
+  environment:
+    HOMEBREW_NO_REQUIRE_TAP_TRUST: 1
   ignore_errors: true
 
 - name: "Install Homebrew Packages"
