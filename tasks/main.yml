@@ -55,6 +55,8 @@
   community.general.homebrew:
     name: "{{ packages }}"
     state: present
+  environment:
+    HOMEBREW_NO_REQUIRE_TAP_TRUST: 1
   vars:
     packages:
       # - 'vim'
