@@ -44,7 +44,7 @@
   ignore_errors: true
 
 - name: "Update Homebrew and upgrade all packages"
-  community.general.homebrew:
+  homebrew:
     update_homebrew: yes
     upgrade_all: yes
   environment:
@@ -52,7 +52,7 @@
   ignore_errors: true
 
 - name: "Install Homebrew Packages"
-  community.general.homebrew:
+  homebrew:
     name: "{{ packages }}"
     state: present
   environment:
