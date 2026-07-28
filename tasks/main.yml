@@ -43,9 +43,16 @@
       - 'universal-ctags/universal-ctags'
   ignore_errors: true
 
+- name: "Update Homebrew and upgrade all packages"
+  community.general.homebrew:
+    update_homebrew: yes
+    upgrade_all: yes
+  ignore_errors: true
+
 - name: "Install Homebrew Packages"
   community.general.homebrew:
     name: "{{ packages }}"
+    state: present
   vars:
     packages:
       # - 'vim'
@@ -92,8 +99,5 @@
       - 'yarn'
       - 'zsh'
       - 'zsh-syntax-highlighting'
-    state: present
-    update_homebrew: yes
-    upgrade_all: yes
   register: brew_common_result
   ignore_errors: true
