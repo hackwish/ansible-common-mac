@@ -43,10 +43,9 @@
       - 'universal-ctags/universal-ctags'
   ignore_errors: true
 
-- name: "Update Homebrew and upgrade all packages"
+- name: "Update Homebrew"
   homebrew:
     update_homebrew: yes
-    upgrade_all: yes
   environment:
     HOMEBREW_NO_REQUIRE_TAP_TRUST: 1
   ignore_errors: true
